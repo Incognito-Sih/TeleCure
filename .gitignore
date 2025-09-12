@@ -1,0 +1,53 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/ServiceDefinitions.json
+
+# Generated files
+*.log
+*.lock
+*.tmp
+*.swp
+*.iml
+
+# IDE files
+.idea/
+.vscode/
+*.classpath
+*.project
+*.settings/
+
+# Android related
+android/.gradle/
+android/app/build/
+*.apk
+*.aab
+*.dex
+
+# iOS related
+ios/Pods/
+ios/.symlinks/
+ios/build/
+
+# macOS related
+macos/Flutter/ephemeral/
+macos/Pods/
+macos/build/
+
+# Windows related
+windows/Flutter/ephemeral/
+windows/build/
+
+# Linux related
+linux/flutter/ephemeral/
+linux/build/
+
+# Coverage
+coverage/
+
+# Environment files (if you add API keys later)
+.env
