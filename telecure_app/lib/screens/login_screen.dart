@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:telecure_app/screens/role_select.dart';
 
 // Replace with your actual HomeScreen import
 import 'home_screen.dart';
@@ -259,7 +260,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            // TODO: Navigate to Sign Up screen.
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => const RegisterScreen()),
+                            );
                           },
                           child: const Text(
                             'Sign Up',
