@@ -54,9 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
               // Top header with app name and notification icon
               Row(
                 children: [
+                  SizedBox(width: 18),
                   Image.asset(
                     'assets/app_logo.png',
-                    width: 80,
+                    width: 30,
                     height: 80,
                     fit: BoxFit.cover,
                   ),
