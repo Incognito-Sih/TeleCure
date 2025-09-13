@@ -54,17 +54,11 @@ class _HomeScreenState extends State<HomeScreen> {
               // Top header with app name and notification icon
               Row(
                 children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundColor: const Color(0xFFEAF6FF),
-                    child: Text(
-                      'T',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFF0081A7),
-                      ),
-                    ),
+                  Image.asset(
+                    'assets/app_logo.png',
+                    width: 80,
+                    height: 80,
+                    fit: BoxFit.cover,
                   ),
                     const SizedBox(width: 10),
                     const Expanded(
@@ -105,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 0),
                 // Welcome card
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
