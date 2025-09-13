@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'role_select.dart';
+import 'patient_resgistatrion.dart'; // Add this import at the top
+
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -38,7 +39,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     // Primary accent used throughout; change as desired
     const Color primaryColor = Color(0xFF0081A7);
-    const Color borderColor = Color(0xFFE0E6EB);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
@@ -115,7 +115,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onPressed: _selectedRole == null
                           ? null
                           : () {
-                              // TODO: Navigate to the chosen registration form
+                              if (_selectedRole == "patient") {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const RegistrationScreen()),
+                                );
+                              }
+                              // You can add more conditions for other roles here
                             },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: _selectedRole == null
