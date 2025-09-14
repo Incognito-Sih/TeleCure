@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'video_consultation_screen.dart';
+import '../widgets/shared_bottom_nav.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,39 +14,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onNavTap(int index) {
     setState(() => _selectedIndex = index);
-    // TODO: Navigate to other pages based on index if needed.
+
+    if (index == 1) {
+      // Consult tab
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const VideoConsultationScreen(),
+        ),
+      );
+    }
+    // Add other navigation cases as needed
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: _onNavTap,
-        selectedItemColor: const Color(0xFF0081A7),
-        unselectedItemColor: const Color(0xFF94A3B8),
-        showUnselectedLabels: true,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.video_call_outlined),
-            label: 'Consult',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.folder_open_outlined),
-            label: 'Records',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      bottomNavigationBar: const SharedBottomNav(currentIndex: 0),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -172,7 +159,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icons.video_call_outlined,
                       label: 'Video Consultation',
                       onTap: () {
-                        // TODO: Navigate to Video Consultation
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const VideoConsultationScreen(),
+                          ),
+                        );
                       },
                     ),
                     _QuickAccessItem(
