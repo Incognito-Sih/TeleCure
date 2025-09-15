@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'language_controller.dart';
 import 'screens/language_select_screen.dart';
 
-
 void main() {
-  runApp(const TeleCureApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => LanguageController(),
+      child: const TeleCureApp(),
+    ),
+  );
 }
 
 class TeleCureApp extends StatelessWidget {
@@ -11,6 +17,8 @@ class TeleCureApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final languageController = Provider.of<LanguageController>(context);
+
     return MaterialApp(
       title: 'TeleCure',
       debugShowCheckedModeBanner: false,

@@ -10,6 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   jitsi_meet_flutter_sdk: ^11.4.0
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:

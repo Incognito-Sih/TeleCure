@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
-/// Drop-in replacement for DrDetailsSheet matching the mockup.
-/// Paste this into your project and replace the existing DrDetailsSheet
-/// in video_consultation_screen.dart.
-/// It reuses your existing `Doctor` model and callbacks.
+import 'package:provider/provider.dart';
+import '../language_controller.dart';
+import '../localization_strings.dart';
 
 class DrDetailsSheet extends StatelessWidget {
   const DrDetailsSheet({
@@ -22,8 +20,11 @@ class DrDetailsSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    const brandTeal = Color(0xFF00D0C6); // bright teal button from mock
-    const tipBg = Color(0xFFEAFBF7); // light aqua background
+    final langCode = Provider.of<LanguageController>(context).locale.languageCode;
+    final strings = localizedStrings1[langCode]!;
+
+    const brandTeal = Color(0xFF00D0C6);
+    const tipBg = Color(0xFFEAFBF7);
     const tipIcon = Color(0xFF18A999);
 
     return SafeArea(
@@ -34,7 +35,6 @@ class DrDetailsSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Handle
             Center(
               child: Container(
                 width: 48,
@@ -47,7 +47,6 @@ class DrDetailsSheet extends StatelessWidget {
               ),
             ),
 
-            // Header
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -72,7 +71,7 @@ class DrDetailsSheet extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        '${doctor.experienceYrs}+ years experience',
+                        '${doctor.experienceYrs}+ ${strings['yearsExperience']}',
                         style: TextStyle(color: theme.textTheme.bodyMedium?.color?.withOpacity(.7)),
                       ),
                     ],
@@ -90,7 +89,7 @@ class DrDetailsSheet extends StatelessWidget {
               ),
 
             const SizedBox(height: 18),
-            Text('Qualifications', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900)),
+            Text(strings['qualifications']!, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900)),
             const SizedBox(height: 8),
             Text(
               _qualificationFallback(doctor),
@@ -98,7 +97,7 @@ class DrDetailsSheet extends StatelessWidget {
             ),
 
             const SizedBox(height: 18),
-            Text('Languages', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900)),
+            Text(strings['languages']!, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900)),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
@@ -107,7 +106,6 @@ class DrDetailsSheet extends StatelessWidget {
             ),
 
             const SizedBox(height: 20),
-            // Connection tip card
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(color: tipBg, borderRadius: BorderRadius.circular(16)),
@@ -121,12 +119,13 @@ class DrDetailsSheet extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Connection health tip',
+                          strings['connectionTipTitle']!,
                           style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w800, color: tipIcon),
                         ),
                         const SizedBox(height: 4),
-                        const Text(
-                          'On slow networks, start with Audio; you can upgrade to Video.',
+                        Text(
+                          strings['connectionTipBody']!,
+                          style: theme.textTheme.bodyMedium,
                         ),
                       ],
                     ),
@@ -137,7 +136,6 @@ class DrDetailsSheet extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // Start Video
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -149,13 +147,12 @@ class DrDetailsSheet extends StatelessWidget {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   textStyle: const TextStyle(fontWeight: FontWeight.w800),
                 ),
-                child: const Text('Start Video'),
+                child: Text(strings['startVideo']!),
               ),
             ),
 
             const SizedBox(height: 12),
 
-            // Start Audio (subtle gray)
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -167,30 +164,28 @@ class DrDetailsSheet extends StatelessWidget {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   textStyle: const TextStyle(fontWeight: FontWeight.w800),
                 ),
-                child: const Text('Start Audio'),
+                child: Text(strings['startAudio']!),
               ),
             ),
 
             const SizedBox(height: 16),
 
-            // Send Message
             Center(
               child: TextButton(
                 onPressed: doctor.supportsChat ? (onSendMessage ?? () {}) : null,
-                child: const Text(
-                  'Send Message',
-                  style: TextStyle(fontWeight: FontWeight.w800),
+                child: Text(
+                  strings['sendMessage']!,
+                  style: const TextStyle(fontWeight: FontWeight.w800),
                 ),
               ),
             ),
 
             const SizedBox(height: 8),
 
-            // Consent microcopy
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                'Your call is encrypted. By continuing you agree to TeleCure’s consent policy.',
+                strings['consentNotice']!,
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodySmall?.copyWith(color: Colors.black54, height: 1.4),
               ),
@@ -202,16 +197,14 @@ class DrDetailsSheet extends StatelessWidget {
   }
 
   String _qualificationFallback(Doctor d) {
-    // If you later add a field like `d.qualifications`, show that instead.
-    // For now, provide a sensible default based on specialty.
     return 'MD, ${d.specialty}';
   }
 }
 
-// Chips & Avatar reusing your styles
 class _LangChip extends StatelessWidget {
   const _LangChip(this.text, {super.key});
   final String text;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -270,8 +263,6 @@ class _Avatar extends StatelessWidget {
   }
 }
 
-/// Dummy Doctor model to make this snippet self-contained during preview.
-/// Delete this block if you already have `Doctor` in scope.
 class Doctor {
   final String name;
   final String specialty;

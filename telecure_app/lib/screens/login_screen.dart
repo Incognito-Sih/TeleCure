@@ -1,53 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:telecure_app/screens/role_select.dart';
-
-// Replace with your actual HomeScreen import
 import 'home_screen.dart';
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-
   bool _obscureText = true;
   bool _isLoading = false;
-
   @override
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
-
   Future<void> _handleLogin() async {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _isLoading = true);
-
-    // TODO: Perform authentication logic here
     await Future.delayed(const Duration(milliseconds: 800));
-
     setState(() => _isLoading = false);
-
-    // Navigate to HomeScreen on success
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (_) => const HomeScreen()),
     );
   }
-
   void _togglePasswordVisibility() {
     setState(() {
       _obscureText = !_obscureText;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,11 +59,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // Add this for the logo
                     Center(
                       child: Image.asset(
                         'assets/app_logo.png',
-                        height: 120, // Adjust size as needed
+                        height: 120,
                       ),
                     ),
                     const SizedBox(height: 0),
@@ -188,7 +172,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 48,
                       child: OutlinedButton(
                         onPressed: () {
-                          // TODO: Implement Google sign-in.
                         },
                         style: OutlinedButton.styleFrom(
                           side: const BorderSide(color: Color(0xFFB3C8E3), width: 1.5),
@@ -220,7 +203,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 16),
                     TextButton(
                       onPressed: () {
-                        // TODO: Navigate to the Forgot Password screen.
                       },
                       style: TextButton.styleFrom(
                         foregroundColor: const Color(0xFF8B99B5),
@@ -272,7 +254,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
 class _InputField extends StatelessWidget {
   const _InputField({
     required this.controller,
@@ -282,14 +263,12 @@ class _InputField extends StatelessWidget {
     this.obscure = false,
     this.onToggleObscure,
   });
-
   final TextEditingController controller;
   final String hint;
   final IconData icon;
   final String? Function(String?) validator;
   final bool obscure;
   final VoidCallback? onToggleObscure;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
