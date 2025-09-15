@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/shared_bottom_nav.dart';
 
 class RecordsScreen extends StatefulWidget {
   const RecordsScreen({super.key});
@@ -108,7 +109,7 @@ class _RecordsScreenState extends State<RecordsScreen> {
   @override
   void initState() {
     super.initState();
-    _all = const [
+    _all = [
       // October 2024
       RecordItem(
         title: 'Prescription - Fever',
@@ -199,7 +200,8 @@ class _RecordsScreenState extends State<RecordsScreen> {
         titleSpacing: 16,
         title: const Text(
           'My Records',
-          style: TextStyle(fontWeight: FontWeight.w800),
+          style: TextStyle(fontWeight: FontWeight.w800,
+                          color: Colors.black),
         ),
         actions: [
           IconButton(
@@ -255,27 +257,27 @@ class _RecordsScreenState extends State<RecordsScreen> {
         ],
       ),
       floatingActionButton: _buildFAB(context),
-      bottomNavigationBar: _offline
-          ? Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFF3CD),
-                border: Border(top: BorderSide(color: Colors.amber.shade300)),
-              ),
-              child: Row(
-                children: const [
-                  Icon(Icons.wifi_off, size: 18),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      'Available offline. Some features may be limited.',
-                      style: TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          : null,
+      // bottomNavigationBar: _offline
+      //     ? Container(
+      //         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      //         decoration: BoxDecoration(
+      //           color: const Color(0xFFFFF3CD),
+      //           border: Border(top: BorderSide(color: Colors.amber.shade300)),
+      //         ),
+      //         child: Row(
+      //           children: const [
+      //             Icon(Icons.wifi_off, size: 18),
+      //             SizedBox(width: 8),
+      //             Expanded(
+      //               child: Text(
+      //                 'Available offline. Some features may be limited.',
+      //                 style: TextStyle(fontWeight: FontWeight.w600),
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       )
+          bottomNavigationBar: const SharedBottomNav(currentIndex: 2)
     );
   }
 

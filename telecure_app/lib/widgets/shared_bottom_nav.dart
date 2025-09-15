@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:telecure_app/screens/records_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/video_consultation_screen.dart';
 import '../screens/coming_soon_screen.dart';
@@ -34,12 +35,9 @@ class SharedBottomNav extends StatelessWidget {
             );
             break;
           case 2:
-            Navigator.pushReplacement(
+          Navigator.pushReplacement(
               context,
-              FadePageRoute(page: const ComingSoonScreen(
-                currentIndex: 2,
-                feature: 'Records',
-              )),
+              FadePageRoute(page: const RecordsScreen()),
             );
             break;
           case 3:
