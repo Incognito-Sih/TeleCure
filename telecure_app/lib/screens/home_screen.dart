@@ -247,8 +247,8 @@ class _HomeScreenState extends State<HomeScreen> {
       required this.icon,
       required this.label,
       required this.onTap,  
-      Key? key,
-    }) : super(key: key);
+      super.key,
+    });
 
     final IconData icon;
     final String label;
@@ -302,8 +302,8 @@ class _HomeScreenState extends State<HomeScreen> {
       required this.icon,
       required this.label,
       required this.onTap,
-      Key? key,
-    }) : super(key: key);
+      super.key,
+    });
 
     final IconData icon;
     final String label;

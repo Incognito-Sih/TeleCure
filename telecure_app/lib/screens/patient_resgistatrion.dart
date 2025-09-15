@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'home_screen.dart'; // Add this import at the top
 
 class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
+  const RegistrationScreen({super.key});
 
   @override
   State<RegistrationScreen> createState() => _RegistrationScreenState();
@@ -53,7 +53,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     const Color focusedBorderColor = Color(0xFF00B5E2);
     const Color hintTextColor = Color(0xFFA1A6B1);
 
-    InputDecoration _inputDecoration(String label, String hint,
+    InputDecoration inputDecoration(String label, String hint,
         {Widget? suffixIcon}) {
       return InputDecoration(
         labelText: label,
@@ -105,7 +105,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               TextFormField(
                 controller: _fullNameController,
                 decoration:
-                    _inputDecoration('Full Name', 'Enter your full name'),
+                    inputDecoration('Full Name', 'Enter your full name'),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Full name is required';
@@ -119,7 +119,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 controller: _dobController,
                 readOnly: true,
                 onTap: _selectDate,
-                decoration: _inputDecoration(
+                decoration: inputDecoration(
                   'Date of Birth',
                   'mm/dd/yyyy',
                   suffixIcon: IconButton(
@@ -139,8 +139,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               // Gender dropdown
               DropdownButtonFormField<String>(
                 decoration:
-                    _inputDecoration('Gender', 'Select your gender'),
-                value: _selectedGender,
+                    inputDecoration('Gender', 'Select your gender'),
+                initialValue: _selectedGender,
                 items: const [
                   DropdownMenuItem(
                     value: 'Male',
@@ -172,7 +172,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               TextFormField(
                 controller: _contactController,
                 keyboardType: TextInputType.phone,
-                decoration: _inputDecoration(
+                decoration: inputDecoration(
                     'Contact Number', 'Enter your contact number'),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
@@ -186,7 +186,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                decoration: _inputDecoration(
+                decoration: inputDecoration(
                     'Email', 'Enter your email address'),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
@@ -204,7 +204,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               TextFormField(
                 controller: _addressController,
                 decoration:
-                    _inputDecoration('Address', 'Enter your address'),
+                    inputDecoration('Address', 'Enter your address'),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Address is required';
@@ -218,7 +218,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 controller: _passwordController,
                 obscureText: true,
                 decoration:
-                    _inputDecoration('Password', 'Create a password'),
+                    inputDecoration('Password', 'Create a password'),
                 validator: (value) {
                   if (value == null || value.length < 6) {
                     return 'Password must be at least 6 characters';

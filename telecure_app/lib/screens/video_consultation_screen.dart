@@ -9,7 +9,7 @@ import 'video_call_screen.dart';
 ///   doctor cards (online/offline), and bottom nav.
 
 class VideoConsultationScreen extends StatefulWidget {
-  const VideoConsultationScreen({Key? key}) : super(key: key);
+  const VideoConsultationScreen({super.key});
 
   @override
   State<VideoConsultationScreen> createState() => _VideoConsultationScreenState();
@@ -82,7 +82,6 @@ class _VideoConsultationScreenState extends State<VideoConsultationScreen> {
                   _FilterPill(label: 'Specialty', onTap: () => _openStubSheet(context, 'Specialty')),
                   _FilterPill(label: 'Language', onTap: () => _openStubSheet(context, 'Language')),
                   _FilterPill(label: 'Availability', onTap: () => _openStubSheet(context, 'Availability')),
-                  _FilterPill(label: 'Fee', onTap: () => _openStubSheet(context, 'Fee')),
                 ],
               ),
             ),
@@ -283,11 +282,11 @@ class _VideoConsultationScreenState extends State<VideoConsultationScreen> {
 
 class _RoundedSearchField extends StatelessWidget {
   const _RoundedSearchField({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hint,
     required this.onChanged,
-  }) : super(key: key);
+  });
   final TextEditingController controller;
   final String hint;
   final ValueChanged<String> onChanged;
@@ -318,7 +317,7 @@ class _RoundedSearchField extends StatelessWidget {
 }
 
 class _FilterPill extends StatelessWidget {
-  const _FilterPill({Key? key, required this.label, this.onTap}) : super(key: key);
+  const _FilterPill({super.key, required this.label, this.onTap});
   final String label;
   final VoidCallback? onTap;
 
@@ -354,7 +353,7 @@ class _FilterPill extends StatelessWidget {
 }
 
 class _DoctorCard extends StatelessWidget {
-  const _DoctorCard({Key? key, required this.doctor, required this.brand, required this.onTap}) : super(key: key);
+  const _DoctorCard({super.key, required this.doctor, required this.brand, required this.onTap});
   final _Doctor doctor;
   final Color brand;
   final VoidCallback onTap;
@@ -362,7 +361,6 @@ class _DoctorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final feeText = doctor.fee == 0 ? 'Free' : '₹${doctor.fee}';
 
     return GestureDetector(
       onTap: onTap,
@@ -401,7 +399,6 @@ class _DoctorCard extends StatelessWidget {
                                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
                               ),
                             ),
-                            Text(feeText, style: const TextStyle(fontWeight: FontWeight.w800)),
                           ],
                         ),
                         const SizedBox(height: 2),
@@ -492,7 +489,7 @@ class _DoctorCard extends StatelessWidget {
 }
 
 class _AvatarWithStatus extends StatelessWidget {
-  const _AvatarWithStatus({Key? key, required this.name, required this.online}) : super(key: key);
+  const _AvatarWithStatus({super.key, required this.name, required this.online});
   final String name;
   final bool online;
   @override
@@ -533,7 +530,7 @@ class _AvatarWithStatus extends StatelessWidget {
 }
 
 class _LangChip extends StatelessWidget {
-  const _LangChip(this.text, {Key? key}) : super(key: key);
+  const _LangChip(this.text, {super.key});
   final String text;
   @override
   Widget build(BuildContext context) {
@@ -552,8 +549,7 @@ class _LangChip extends StatelessWidget {
 }
 
 class _CallButton extends StatelessWidget {
-  const _CallButton({Key? key, required this.label, required this.brand, required this.icon, required this.onPressed})
-      : super(key: key);
+  const _CallButton({super.key, required this.label, required this.brand, required this.icon, required this.onPressed});
   final String label;
   final Color brand;
   final IconData icon;
@@ -577,8 +573,7 @@ class _CallButton extends StatelessWidget {
 }
 
 class _OutlinedPillButton extends StatelessWidget {
-  const _OutlinedPillButton({Key? key, required this.label, required this.icon, required this.onPressed})
-      : super(key: key);
+  const _OutlinedPillButton({super.key, required this.label, required this.icon, required this.onPressed});
   final String label;
   final IconData icon;
   final VoidCallback onPressed;
@@ -607,7 +602,6 @@ class _Doctor {
   final int consults; // rounded display e.g., 1k+
   final double rating;
   final List<String> languages;
-  final int fee; // ₹
   final bool online;
   final List<String> goodFor;
   const _Doctor({
@@ -617,7 +611,6 @@ class _Doctor {
     required this.consults,
     required this.rating,
     required this.languages,
-    required this.fee,
     required this.online,
     required this.goodFor,
   });
@@ -631,7 +624,6 @@ final _sampleDoctors = <_Doctor>[
     consults: 1000,
     rating: 4.8,
     languages: ['EN', 'HI', 'PA'],
-    fee: 200,
     online: true,
     goodFor: ['fever', 'cough', 'viral'],
   ),
@@ -642,7 +634,6 @@ final _sampleDoctors = <_Doctor>[
     consults: 800,
     rating: 4.9,
     languages: ['EN', 'HI'],
-    fee: 300,
     online: false,
     goodFor: ['child fever', 'vaccination'],
   ),
@@ -653,7 +644,6 @@ final _sampleDoctors = <_Doctor>[
     consults: 600,
     rating: 4.6,
     languages: ['EN'],
-    fee: 250,
     online: true,
     goodFor: ['skin rash', 'acne', 'eczema'],
   ),

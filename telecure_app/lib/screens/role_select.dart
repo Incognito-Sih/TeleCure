@@ -160,8 +160,8 @@ class _RoleOptionTile extends StatelessWidget {
     required this.icon,
     required this.selected,
     required this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String label;
   final IconData icon;

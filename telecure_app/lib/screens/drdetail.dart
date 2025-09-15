@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 
 class DrDetailsSheet extends StatelessWidget {
   const DrDetailsSheet({
-    Key? key,
+    super.key,
     required this.doctor,
     required this.onStartVideo,
     required this.onStartAudio,
     this.onSendMessage,
-  }) : super(key: key);
+  });
 
   final Doctor doctor;
   final VoidCallback onStartVideo;
@@ -210,7 +210,7 @@ class DrDetailsSheet extends StatelessWidget {
 
 // Chips & Avatar reusing your styles
 class _LangChip extends StatelessWidget {
-  const _LangChip(this.text, {Key? key}) : super(key: key);
+  const _LangChip(this.text, {super.key});
   final String text;
   @override
   Widget build(BuildContext context) {
@@ -229,7 +229,7 @@ class _LangChip extends StatelessWidget {
 }
 
 class _Avatar extends StatelessWidget {
-  const _Avatar({Key? key, required this.online, required this.name}) : super(key: key);
+  const _Avatar({super.key, required this.online, required this.name});
   final bool online;
   final String name;
 
