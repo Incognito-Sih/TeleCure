@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'video_consultation_screen.dart';
+import '../widgets/shared_bottom_nav.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,39 +14,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onNavTap(int index) {
     setState(() => _selectedIndex = index);
-    // TODO: Navigate to other pages based on index if needed.
+
+    if (index == 1) {
+      // Consult tab
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const VideoConsultationScreen(),
+        ),
+      );
+    }
+    // Add other navigation cases as needed
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: _onNavTap,
-        selectedItemColor: const Color(0xFF0081A7),
-        unselectedItemColor: const Color(0xFF94A3B8),
-        showUnselectedLabels: true,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.video_call_outlined),
-            label: 'Consult',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.folder_open_outlined),
-            label: 'Records',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      bottomNavigationBar: const SharedBottomNav(currentIndex: 0),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -54,17 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
               // Top header with app name and notification icon
               Row(
                 children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundColor: const Color(0xFFEAF6FF),
-                    child: Text(
-                      'T',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFF0081A7),
-                      ),
-                    ),
+                  SizedBox(width: 18),
+                  Image.asset(
+                    'assets/app_logo.png',
+                    width: 30,
+                    height: 80,
+                    fit: BoxFit.cover,
                   ),
                     const SizedBox(width: 10),
                     const Expanded(
@@ -105,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 0),
                 // Welcome card
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
@@ -177,7 +159,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icons.video_call_outlined,
                       label: 'Video Consultation',
                       onTap: () {
-                        // TODO: Navigate to Video Consultation
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const VideoConsultationScreen(),
+                          ),
+                        );
                       },
                     ),
                     _QuickAccessItem(
@@ -260,8 +247,8 @@ class _HomeScreenState extends State<HomeScreen> {
       required this.icon,
       required this.label,
       required this.onTap,  
-      Key? key,
-    }) : super(key: key);
+      super.key,
+    });
 
     final IconData icon;
     final String label;
@@ -315,8 +302,8 @@ class _HomeScreenState extends State<HomeScreen> {
       required this.icon,
       required this.label,
       required this.onTap,
-      Key? key,
-    }) : super(key: key);
+      super.key,
+    });
 
     final IconData icon;
     final String label;

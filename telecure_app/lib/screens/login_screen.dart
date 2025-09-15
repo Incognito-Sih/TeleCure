@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:telecure_app/screens/role_select.dart';
 
 // Replace with your actual HomeScreen import
 import 'home_screen.dart';
@@ -73,39 +74,25 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    // Add this for the logo
+                    Center(
+                      child: Image.asset(
+                        'assets/app_logo.png',
+                        height: 120, // Adjust size as needed
+                      ),
+                    ),
+                    const SizedBox(height: 0),
                     const Center(
                       child: Text(
-                        'Telemedicine App',
+                        'Welcome Back',
                         style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 13,
-                          color: Color(0xFF7A859B),
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1F324A),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 18),
-                    const Center(
-                      child: CircleAvatar(
-                        radius: 28,
-                        backgroundColor: Color(0xFFEAF6FF),
-                        child: Icon(
-                          Icons.shield_outlined,
-                          size: 32,
-                          color: Color(0xFF0081A7),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'Welcome Back',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1F324A),
-                      ),
-                    ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 10),
                     const Text(
                       'Login to continue your healthcare journey.',
                       textAlign: TextAlign.center,
@@ -259,7 +246,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            // TODO: Navigate to Sign Up screen.
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => const RegisterScreen()),
+                            );
                           },
                           child: const Text(
                             'Sign Up',
